@@ -16,3 +16,7 @@
 
   <button (click)="addStudent()">Add student</button>
 </div>
+
+<div>
+  <p *ngFor="let item of items">{{item.studentName}}</p>
+</div>
