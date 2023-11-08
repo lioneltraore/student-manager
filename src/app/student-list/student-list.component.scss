@@ -1,0 +1,17 @@
+.list {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  margin: auto;
+  padding: 32px;
+  border-radius: 16px;
+  margin-top: 32px;
+
+  &__item {
+    &:not(:last-child) {
+      border-bottom: solid 1px #ccccd0;
+    }
+  }
+
+}

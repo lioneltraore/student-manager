@@ -1,0 +1,18 @@
+<div class="form">
+  <div class="form__group">
+    <label class="form__group--label">Name: </label>
+    <input class="form__group--input" [(ngModel)]="studentName" name="simpleName" type="text" />
+  </div>
+
+  <div class="form__group">
+    <label class="form__group--label">Age: </label>
+    <input class="form__group--input" [(ngModel)]="studentAge" name="simpleAge" type="number" />
+  </div>
+
+  <div class="form__group">
+    <label class="form__group--label">Level: </label>
+    <input class="form__group--input" [(ngModel)]="studentLevel" name="simpleLevel" type="text" />
+  </div>
+
+  <button (click)="addStudent()">Add student</button>
+</div>
