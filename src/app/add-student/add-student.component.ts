@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Student } from '../student/student.model';
 
 @Component({
@@ -8,9 +8,13 @@ import { Student } from '../student/student.model';
 })
 export class AddStudentComponent implements OnInit {
 
+  @Output() addStudentEvent = new EventEmitter<Student>();
+
   studentName?: string;
   studentAge?: number;
   studentLevel?: string;
+
+  displayError = false;
 
   items: Student[] = [];
 
@@ -21,6 +25,16 @@ export class AddStudentComponent implements OnInit {
 
   addStudent() {
 
+    if(!this.studentName || !this.studentAge || !this.studentLevel) {
+      this.displayError = true;
+
+      setTimeout(() => {
+        this.displayError = false
+      }, 2000);
+
+      return;
+    }
+
     const newStudent: Student = {
       id: this.getId(),
       studentName: this.studentName,
@@ -28,16 +42,11 @@ export class AddStudentComponent implements OnInit {
       studentLevel: this.studentLevel
     }
 
-    console.log(newStudent);
+    this.studentAge = undefined;
+    this.studentLevel = undefined;
+    this.studentName = undefined;
 
-    this.studentName += ' (Added)';
-
-    /*
-      - creation d'un etudiant [X]
-      - attribution d'un id [X]
-      - effacer les donnees du formulaire
-      - ajouter l'etudiant au debut du tableau
-    */
+    this.addStudentEvent.emit(newStudent);
   }
 
   getId() {

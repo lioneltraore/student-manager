@@ -8,9 +8,6 @@ import { Student } from './student.model';
 })
 export class StudentComponent implements OnInit {
 
-  studentName: string = '';
-  studentAge: number = 0;
-
   list: Student[] = [
     // {
     //   studentName: 'Bob',
@@ -49,9 +46,8 @@ export class StudentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  displayInfo() {
-    console.log('studentName: ', this.studentName);
-    console.log('studentAge: ', this.studentAge);
+  addStudent(newStudent: Student) {
+    this.list.unshift(newStudent);
   }
 
 
