@@ -1,6 +1,6 @@
-<app-add-student (addStudentEvent)="addStudent($event)"></app-add-student>
+<app-add-student [currentStudent]="studentToUpdate" [students]="list" (updateStudentEvent)="saveUpdate($event)" (addStudentEvent)="addStudent($event)"></app-add-student>
 
-<app-student-list [items]="list"></app-student-list>
+<app-student-list (onUpdate)="onUpdate($event)" (onDelete)="deleteStudent($event)" [items]="list"></app-student-list>
 
 
 

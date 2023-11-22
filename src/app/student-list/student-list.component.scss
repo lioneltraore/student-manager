@@ -15,3 +15,52 @@
   }
 
 }
+
+.deleteBtn {
+  margin-top: 32px;
+  border: none;
+  border-radius: 12px;
+  background-color: orangered;
+  color: white;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  width: fit-content;
+
+
+  &:hover {
+    cursor: pointer;
+    background-color: orangered;
+  }
+}
+
+.updateBtn {
+  margin-top: 32px;
+  border: none;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  width: fit-content;
+  margin-left: 8px;
+
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.744);
+  }
+}
+
+.btn__group {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 16px;
+}

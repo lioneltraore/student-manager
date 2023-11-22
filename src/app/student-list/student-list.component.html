@@ -1,6 +1,11 @@
 <div class="list">
   <div class="list__item" *ngFor="let item of students">
     <p>
+      <span>ID: </span>
+      <span>{{ item.id }}</span>
+    </p>
+
+    <p>
       <span>Name: </span>
       <span>{{ item.studentName }}</span>
     </p>
@@ -14,5 +19,9 @@
       <span>Level: </span>
       <span>{{ item.studentLevel }}</span>
     </p>
+    <div class="btn__group">
+      <button class="deleteBtn" (click)="deleteStudent(item)">Delete</button>
+      <button class="updateBtn" (click)="update(item)">Update</button>
+    </div>
   </div>
 </div>

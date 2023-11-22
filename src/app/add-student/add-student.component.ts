@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Student } from '../student/student.model';
 
 @Component({
@@ -8,7 +8,10 @@ import { Student } from '../student/student.model';
 })
 export class AddStudentComponent implements OnInit {
 
+  @Input('students') items: Student[] = [];
+  @Input('currentStudent') currentStudent: Student | undefined;
   @Output() addStudentEvent = new EventEmitter<Student>();
+  @Output() updateStudentEvent = new EventEmitter<Student>();
 
   studentName?: string;
   studentAge?: number;
@@ -16,7 +19,7 @@ export class AddStudentComponent implements OnInit {
 
   displayError = false;
 
-  items: Student[] = [];
+
 
   constructor() { }
 
@@ -46,7 +49,25 @@ export class AddStudentComponent implements OnInit {
     this.studentLevel = undefined;
     this.studentName = undefined;
 
+    // this.items.push(newStudent);
     this.addStudentEvent.emit(newStudent);
+  }
+
+  updateStudent() {
+    console.log(this.currentStudent);
+    if(!this.currentStudent?.studentName || !this.currentStudent?.studentAge || !this.currentStudent?.studentLevel) {
+      this.displayError = true;
+
+      setTimeout(() => {
+        this.displayError = false
+      }, 2000);
+
+      return;
+    }
+
+    const data: Student = {...this.currentStudent};
+    this.updateStudentEvent.emit(data);
+    this.currentStudent = undefined;
   }
 
   getId() {

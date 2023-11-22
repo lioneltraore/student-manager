@@ -41,6 +41,8 @@ export class StudentComponent implements OnInit {
     // },
   ];
 
+  studentToUpdate?: Student;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -48,6 +50,22 @@ export class StudentComponent implements OnInit {
 
   addStudent(newStudent: Student) {
     this.list.unshift(newStudent);
+  }
+
+  deleteStudent(student: Student) {
+    this.list = this.list.filter(item => item.id !== student.id);
+  }
+
+  onUpdate(student: Student | undefined) {
+    this.studentToUpdate = student;
+  }
+
+  saveUpdate(student: Student) {
+    for (let std of this.list) {
+      if(std.id === student.id) {
+        std = {...student, id: student.id }
+      }
+    }
   }
 
 

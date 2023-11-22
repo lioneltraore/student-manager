@@ -1,4 +1,4 @@
-<div class="form">
+<div *ngIf="!currentStudent?.id" class="form">
   <div class="form__group">
     <label class="form__group--label">Name: </label>
     <input class="form__group--input" [(ngModel)]="studentName" name="simpleName" type="text" />
@@ -19,6 +19,23 @@
   <p *ngIf="displayError" class="error">Veuillez remplir le formulaire!</p>
 </div>
 
-<div>
-  <p *ngFor="let item of items">{{item.studentName}}</p>
+<div *ngIf="currentStudent && currentStudent.id" class="form">
+  <div class="form__group">
+    <label class="form__group--label">Name: </label>
+    <input class="form__group--input" [(ngModel)]="currentStudent.studentName" name="simpleName" type="text" />
+  </div>
+
+  <div class="form__group">
+    <label class="form__group--label">Age: </label>
+    <input class="form__group--input" [(ngModel)]="currentStudent.studentAge" name="simpleAge" type="number" />
+  </div>
+
+  <div class="form__group">
+    <label class="form__group--label">Level: </label>
+    <input class="form__group--input" [(ngModel)]="currentStudent.studentLevel" name="simpleLevel" type="text" />
+  </div>
+
+  <button (click)="updateStudent()">Update student</button>
+
+  <p *ngIf="displayError" class="error">Veuillez remplir le formulaire!</p>
 </div>

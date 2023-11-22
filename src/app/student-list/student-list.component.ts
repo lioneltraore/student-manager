@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Student } from '../student/student.model';
 
 @Component({
@@ -10,10 +10,20 @@ export class StudentListComponent implements OnInit {
 
   @Input('items') students: Student[] = [
   ];
+  @Output('onDelete') onDelete = new EventEmitter<Student>();
+  @Output('onUpdate') onUpdate = new EventEmitter<Student>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteStudent(item: Student) {
+    this.onDelete.emit(item);
+  }
+
+  update(item: Student) {
+    this.onUpdate.emit(item);
   }
 
 }
