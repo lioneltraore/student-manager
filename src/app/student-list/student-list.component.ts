@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Student } from '../student/student.model';
+import { StudentService } from '../student.service';
+import { Student } from '../student.model';
 
 @Component({
   selector: 'app-student-list',
@@ -8,22 +9,31 @@ import { Student } from '../student/student.model';
 })
 export class StudentListComponent implements OnInit {
 
-  @Input('items') students: Student[] = [
-  ];
-  @Output('onDelete') onDelete = new EventEmitter<Student>();
-  @Output('onUpdate') onUpdate = new EventEmitter<Student>();
+  // @Input('items') students: Student[] = [
+  // ];
+  // @Output('onDelete') onDelete = new EventEmitter<Student>();
+  // @Output('onUpdate') onUpdate = new EventEmitter<Student>();
 
-  constructor() { }
+  students: Student[] = [];
+
+  constructor(
+    private studentService: StudentService
+  ) { }
 
   ngOnInit(): void {
+    this.get();
   }
 
-  deleteStudent(item: Student) {
-    this.onDelete.emit(item);
+  get() {
+    this.students = this.studentService.get();
   }
 
-  update(item: Student) {
-    this.onUpdate.emit(item);
-  }
+  // deleteStudent(item: Student) {
+  //   this.onDelete.emit(item);
+  // }
+
+  // update(item: Student) {
+  //   this.onUpdate.emit(item);
+  // }
 
 }
